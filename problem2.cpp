@@ -1,6 +1,6 @@
 // Michelle Dicks
 // CS 52
-// Assignment #2
+// Assignment #1
 
 #include <iostream>
 #include <iomanip>
