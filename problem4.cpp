@@ -10,29 +10,23 @@ int main ()
 	// initialize variables
 	int month;
 
-	// explain program & get selection 
-	cout << "This program determines the season based on the month." << endl;
-	cout << "The months are as follows: " << endl;
-	cout << "1. January, 2. February, 3. March" << endl;
-	cout << "4. April, 5. May, 6. June" << endl;
-	cout << "7. July, 8. August, 9. September" << endl;
-	cout << "10. October, 11. November, 12. December" << endl;
-	cout << "Please enter the month: " << endl;
+	// get selection 
+	cout << "Please enter a month (1-12): ";
 	cin >> month; 
 
 	// display result
-	if (month > 0 && < 4)
-		cout << "Month " << month << " is in spring!";
-	if (month > 3 && < 7)
-		cout << "Month " << month << " is in summer!";
-	if (month > 6 && < 10)
-		cout << "Month " << month << " is in fall!";
-	if (month > 9 && < 13)
-		cout << "Month " << month << " is in winter!";
-	if (month < 0)
-		cout << "That is not a valid month!";
+	if ((month > 0) && (month < 4))
+		cout << "Month " << month << " is in spring!" << endl;
+	if ((month > 3) && (month < 7))
+		cout << "Month " << month << " is in summer!" << endl;
+	if ((month > 6) && (month < 10))
+		cout << "Month " << month << " is in fall!" << endl;
+	if ((month > 9) && (month < 13))
+		cout << "Month " << month << " is in winter!" << endl;
+	if (month <= 0)
+		cout << "That is not a valid month!" << endl;
 	if (month > 12)
-		cout << "That month must be in the future.";
+		cout << "That month must be in the future." << endl;
 
 	return 0;
 }
