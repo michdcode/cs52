@@ -11,17 +11,17 @@ int main()
 	// Initialize variables
 	const int VIP = 120, PREMIUM = 80, REGULAR = 40;
 	const float TAX_RATE = 9.25; 
-	int vipTix, premiumTix, regularTix, vipTotal, premiumTotal, regularTotal, subtotal;
-	float salesTax, totalCost, displayTax;
+	int vipTix, premiumTix, regularTix;
+	float salesTax, totalCost, displayTax, vipTotal, premiumTotal, regularTotal, subtotal;
 	char p = 37;
 
 	// Obtain ticket quantity by category 
 	cout << "How many tickets would you like to order?" << endl;
 	cout << "VIP Tickets ($" << VIP << "): ";
 	cin >> vipTix;
-	cout << "\nPremium Tickets ($" << PREMIUM << "): ";
+	cout << "Premium Tickets ($" << PREMIUM << "): ";
 	cin >> premiumTix;
-	cout << "\nRegular Tickets ($" << REGULAR << "): ";
+	cout << "Regular Tickets ($" << REGULAR << "): ";
 	cin >> regularTix;
 
 	// Calculate totals
@@ -37,22 +37,20 @@ int main()
 	cout << endl;
 	cout << "Invoice:" << endl;
 	cout << left << setw(14) << "VIP:"
-		 << right << "$" << VIP << " x " << vipTix << " = $" 
+		 << right << "$" << setw(4) << VIP << " x " << vipTix << " = $" << setw(6) 
 		 << fixed << showpoint << setprecision(2) << vipTotal << endl;
 	cout << left << setw(14) << "Premium:"
-		 << right << "$" << PREMIUM << " x " << premiumTix << " = $" 
+		 << right << "$" << setw(4) << PREMIUM << " x " << premiumTix << " = $" << setw(6)
 		 << fixed << showpoint << setprecision(2) << premiumTotal << endl;
 	cout << left << setw(14) << "Regular:"
-		 << right << "$" << REGULAR << " x " << regularTix << " = $" 
+		 << right << "$" << setw(4) << REGULAR << " x " << regularTix <<  " = $" << setw(6)
 		 << fixed << showpoint << setprecision(2) << regularTotal << endl;
 	cout << left << setw(14) << "Sales Tax:"
-		 << right << TAX_RATE << p << " = $" 
+		 << right << TAX_RATE << p << setw(8) << " = $" << setw(6)
 		 << fixed << showpoint << setprecision(2) << salesTax << endl;
-	cout << left << setw(14) << "Total Price: $"
-		 << right << fixed << showpoint << setprecision(2) << totalCost << endl;
+    cout << "------------------------------------" << endl;
+	cout << left << setw(14) << "Total Price:"
+		 << right << setw(13) <<"$" << fixed << showpoint << setprecision(2) << totalCost << endl;
 
 return 0; 
 }
-
-
-
