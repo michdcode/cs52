@@ -17,7 +17,6 @@ int main() {
   cin >> wickSize;
 
   // generate candle
-  
   cout << endl;
   cout.fill('=');  
   cout.width(candleSize);  
