@@ -19,6 +19,7 @@ int main()
 
 	// Function call
 	triDisplay(size);
+	
 	return 0;
 }
 
