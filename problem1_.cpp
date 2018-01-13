@@ -6,7 +6,7 @@
 using namespace std;
 
 // Function prototype
-void drawCandle(int candleSize, int wickSize);
+void drawCandle(int, int);
 
 int main() {
   	// Declare variables

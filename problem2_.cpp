@@ -5,7 +5,7 @@
 using namespace std;
 
 // Function prototype
-void triDisplay(int stars);
+void triDisplay(int);
 
 int main()
 {
