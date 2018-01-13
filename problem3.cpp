@@ -18,7 +18,7 @@ int main ()
 	cout << "What operation would you like to perform?" << endl;
 	cout << "(+) Addition, (-) Subtraction, (*) Multiplication, or (/) Division" << endl;
 	cout << "Enter the symbol that corresponds to your choice: ";
-	cin >> choice;
+	choice = cin.get();
 
 	switch (choice)
 	{
