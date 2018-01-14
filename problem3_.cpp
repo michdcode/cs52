@@ -19,13 +19,15 @@ int main()
 	while (currentNum != -1)
 		{
 			getValidNumber(currentNum);
+			// if (currentNum == -1)
+			// 	break;
 			count ++;
 			cout << currentNum;
 			sum = sum + currentNum;
 		}
 
-	sum = sum + 1;
-	count = count - 1;
+	sum = sum + 1; // if break then may not need add'l count
+	count = count - 1; // if break then may not need add'l count 
 	average = sum/count;
 
 	// Show Results
