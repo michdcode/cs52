@@ -9,7 +9,7 @@ using namespace std;
 /* Two helpers were used to find this solution:
 1. The mathematical formula to determine whether n is a Fibonacci number is: 
 n is a Fibonacci number if and only if 5*n^2 + 4 or 5*n^2-4 is a square.
-The formula came from this math website:
+This formula came from this math website:
 http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibFormula.html#section5
 
 2. The function to determine if a number is a whole number came from this website:
@@ -20,14 +20,31 @@ https://stackoverflow.com/questions/9612839/is-there-a-way-to-check-if-a-variabl
 bool isFibonacci(int);
 
 int main(){
-	int ans, n = 21;
-	ans = isFibonacci(n);
-	if (ans == 0)
-		cout << "False";
-	if (ans == 1)
-		cout << "True";
-	return 0;
+	// Declare variables
+	int ans, userNum = 0;
 
+	// Get user input of number to check and display result
+	while (userNum != -1)
+	{
+	cout << endl;
+	cout << "If finished, enter -1, otherwise, enter a positive number: " ;
+	cin >> userNum;
+
+	// check to see if user entered -1 and if so, end program  
+	if (userNum == -1)
+		break;
+
+	// Function call to get answer and display results
+	ans = isFibonacci(userNum);
+	cout << endl;
+	if (ans == 0)
+		cout << userNum << " is not a Fibonacci number";
+	else
+		cout << userNum << " is a Fibonacci number";
+	}
+
+	cout << endl << "Goodbye!";
+	return 0;
 }
 
 bool isFibonacci(int num)
