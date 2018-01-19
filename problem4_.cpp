@@ -2,19 +2,16 @@
 // CS 52
 // Assignment #2
 
+/* One helper was used in my program, as follows:
+The mathematical formula to determine whether n is a Fibonacci number is: 
+n is a Fibonacci number if and only if 5*n^2 + 4 or 5*n^2-4 is a square.
+The formula came from this math website:
+http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibFormula.html#section5
+*/
+
 #include <iostream>
 #include <cmath>
 using namespace std;
-
-/* Two helpers were used to find this solution:
-1. The mathematical formula to determine whether n is a Fibonacci number is: 
-n is a Fibonacci number if and only if 5*n^2 + 4 or 5*n^2-4 is a square.
-This formula came from this math website:
-http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibFormula.html#section5
-
-2. The function to determine if a number is a whole number came from this website:
-https://stackoverflow.com/questions/9612839/is-there-a-way-to-check-if-a-variable-is-a-whole-number-c#9612851
-*/
 
 // Function prototype
 bool isFibonacci(int);
