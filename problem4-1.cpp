@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cctype>
 using namespace std;
 
 int main ()
@@ -24,7 +25,7 @@ int main ()
 	// process file contents
 	while (inputFile >> endFile)
 	{
-		space ++;
+		space ++; // have to do it this way because isspace will count a newline and tabs as spaces
 		for (int i = 0; i < endFile.length(); i++)
 		{
 			if (islower(endFile[i]))
@@ -33,8 +34,6 @@ int main ()
 				uppercase ++;
 			else if (isdigit(endFile[i]))
 				digit ++;
-			else if (ispunct(endFile[i]))
-				continue;
 		}
 	}
 	// display results
@@ -49,5 +48,3 @@ int main ()
 	inputFile.close();
 	return 0;
 }
-
-// g++ prob4.cpp -o pro4
