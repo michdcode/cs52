@@ -22,11 +22,32 @@ int main ()
 		cout << "Error opening the file";
 
 	// process file contents
-	while (inputFile )
+	while (inputFile >> endFile)
+	{
+		space ++;
+		for (int i = 0; i < endFile.length(); i++)
+		{
+			if (islower(endFile[i]))
+				lowercase ++;
+			else if (isupper(endFile[i])) 
+				uppercase ++;
+			else if (isdigit(endFile[i]))
+				digit ++;
+			else if (ispunct(endFile[i]))
+				continue;
+		}
+	}
+	// display results
+	cout << endl;
+	cout << "File contains" << endl;
+	cout << "Lowercase letters: " << lowercase << endl;
+	cout << "Uppercase letters: " << uppercase << endl;
+	cout << "Digits: " << digit << endl;
+	cout << "Spaces: " << space << endl; 
 
-
-
-
+	// close file 
 	inputFile.close();
 	return 0;
 }
+
+// g++ prob4.cpp -o pro4
