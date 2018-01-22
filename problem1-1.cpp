@@ -9,12 +9,17 @@ using namespace std;
 
 // Constants & function prototypes 
 int const SIZE = 5; 
-void getMinimum(const int [][SIZE], int);
-void getMaximum(const int [][SIZE], int);
-void getAverage(const int [][SIZE], int);
+int getMinimum(const int [][SIZE], int);
+int getMaximum(const int [][SIZE], int);
+double getAverage(const int [][SIZE], int);
 
 int main()
 {
+	// declare variables
+	int minimum, maximum;
+	double average;
+
+	// declare & initialize matrix
 	int matrix[SIZE][SIZE] = {
 	{7, 2, 10, 3, 6},
 	{1, 12, 2, 0, 20},
@@ -22,13 +27,15 @@ int main()
 	{6, 0, 17, 18, 8},
 	{1, 13, 10, 9, 11}};
 
-	// Function calls to get minimum, maximum & average
-	getMinimum(matrix, SIZE);
-	getMaximum(matrix, SIZE);
-	getAverage(matrix, SIZE);
+	// Function calls to get minimum & maximum
+	minimum = getMinimum(matrix, SIZE);
+	maximum = getMaximum(matrix, SIZE);
+	average = getAverage(matrix, SIZE);
 	
 	// Display results
-	// cout << "Min: " << minimum << ", Max: " << maximum << ", Avg: " << showpoint << setprecision(2) << average << endl;
+	cout << "Min: " << minimum << ", Max: " << maximum << ", Avg: " << average << endl;
+	
+	
 	return 0;
 }
 
@@ -36,7 +43,7 @@ int main()
 *							getMinimum								*
 * This function determines the smallest number in the 5 x 5 matrix.	*
 ********************************************************************/
-void getMinimum(const int arr[][SIZE], int rows)
+int getMinimum(const int arr[][SIZE], int rows)
 {	int min = arr[0][0];
 
 	for (int m = 0; m < rows; m++) // this loops over each column
@@ -47,7 +54,7 @@ void getMinimum(const int arr[][SIZE], int rows)
 				min = arr[m][n];
 		}
 	}
-	cout << "\nminimum is: " << min << endl;
+	return min;
 }
 
 /********************************************************************
@@ -55,8 +62,7 @@ void getMinimum(const int arr[][SIZE], int rows)
 * This function determines the largest number in the 5 x 5 matrix.	*
 ********************************************************************/
 
-
-void getMaximum(const int arr[][SIZE], int rows)
+int getMaximum(const int arr[][SIZE], int rows)
 {	int max = arr[0][0];
 
 	for (int m = 0; m < rows; m++) 
@@ -67,7 +73,7 @@ void getMaximum(const int arr[][SIZE], int rows)
 				max = arr[m][n];
 		}
 	}
-	cout << "\nmaximum is: " << max << endl;
+	return max;
 }
 
 /********************************************************************
@@ -75,24 +81,18 @@ void getMaximum(const int arr[][SIZE], int rows)
 * This function determines the largest number in the 5 x 5 matrix.	*
 ********************************************************************/
 
+double getAverage(const int arr[][SIZE], int rows)
+{	double sum = 0.0, count = 0.0, average, r;
 
-void getAverage(const int arr[][SIZE], int rows)
-{	int sum, count;
-	float average, r;
-
-	for (int m = 0; m < rows; m++) // this loops over each column
+	for (int m = 0; m < rows; m++) 
 	{
-		for (int n = 0; n < SIZE; n++) // this will loop over each row 
+		for (int n = 0; n < SIZE; n++)
 		{
 			count ++;
 			sum = sum + arr[m][n];
 		}
 	}
-	cout << endl;
 	average = sum/count;
-	// r = (static_cast<double>(sum)) % (static_cast<double>(count));
-	r = remainder(static_cast<float>(sum), static_cast<float>(count)); 
-	cout << "\naverage is: " << average << ".";
-	cout << setprecision(2) << r;
+	return average; 
 }
 
