@@ -30,6 +30,10 @@ int main ()
 	return 0;
 }
 
+/*********************************************************************
+*							findFirst								 *
+* This function finds the first non-repeated character in the string.*
+*********************************************************************/
 
 char findFirst(string phrase)
 {

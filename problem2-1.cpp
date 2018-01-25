@@ -47,9 +47,14 @@ int main ()
 	return 0;
 }
 
-// the code for this sort comes from lecture 8
+/********************************************************************
+*							selectionSort							*
+* This function sorts the array from lowest to highest.				*
+* NOTE: the code for this sort comes from lecture 8.				*
+********************************************************************/
+
 void selectionSort(int *numList, int SIZE)
-{	// sort the array 
+{	
 	for (int i = 0; i < SIZE; i++)
 		{
 			for (int k = i + 1; k < SIZE; k++)

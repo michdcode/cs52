@@ -78,7 +78,7 @@ int getMaximum(const int arr[][SIZE], int rows)
 
 /********************************************************************
 *							getMaximum								*
-* This function determines the largest number in the 5 x 5 matrix.	*
+* This function finds the average number in the 5 x 5 matrix.		*
 ********************************************************************/
 
 double getAverage(const int arr[][SIZE], int rows)
