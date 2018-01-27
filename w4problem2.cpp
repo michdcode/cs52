@@ -1,17 +1,30 @@
-// Date.cpp is the Date clas implementation file. 
-#include "date.h"
+// Michelle Dicks
+// CS 52
+// Assignment #4
 
-/************************************************************************
-*								Date::Date								*
-*	This is the default constructor. It will instantiate a Date 	 	*
-*	object if there are no parameters given at instantiation.			*
-************************************************************************/
-Date::Date() //default
-	{
-		month = 0;
-		day = 0;
-		year = 0;
-	} 
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Date
+{	
+	private:
+		int month, day, year;
+
+	public:
+		Date(int userMonth, int userDay, int userYear);
+		// Mutator & Accessor function prototypes
+		void setMonth(int iMonth);
+		void setDay(int iDay);
+		void setYear(int iYear);
+		int getMonth() const;
+		int getDay() const;
+		int getYear() const;
+		// Display function prototypes
+		void showDateSlash();
+		void showDateAmerican();
+		void showDateEuropean();
+};
 
 /************************************************************************
 *								Date::Date								*
@@ -25,12 +38,6 @@ Date::Date(int userMonth, int userDay, int userYear)
 		setDay(userDay);
 		setYear(userYear);
 	}
-	
-/************************************************************************
-*								Date::~Date								*
-*	This is the destructor. It will free up memory for a Date object. 	*
-************************************************************************/
-Date::~Date() //default
 
 /************************************************************************
 *								Date::setMonth							*
@@ -75,7 +82,7 @@ int Date::getMonth() const
 *								Date::getDay							*
 *	This function returns the value in member variable day.				*
 ************************************************************************/
-int getDay() const
+int Date::getDay() const
 	{	
 		return day; 
 	}
@@ -84,7 +91,7 @@ int getDay() const
 *								Date::getYear							*
 *	This function returns the value in member variable year.			*
 ************************************************************************/
-int getYear() const 
+int Date::getYear() const 
 	{	
 		return year; 
 	}
@@ -94,86 +101,119 @@ int getYear() const
 *	This will display the month/day/year in numerical form using a		*
 *   slash to separate each element. 									*
 ************************************************************************/
-void Date::showDateSlash();
-	cout << endl; 
-	cout << getMonth() << "/" << getDate() << "/" << getYear();  
-
+void Date::showDateSlash()
+	{
+		cout << endl; 
+		cout << getMonth() << "/" << getDay() << "/" << getYear();
+	}
+	  
 /************************************************************************
 *						void Date::showDateAmerican						*
 *	This will display the date in the American style, with the month	*
 *   written out, then the day and then the year.						*
 ************************************************************************/
-void showDateAmerican();
-	int month; 
-	cout << endl;
-	month = getMonth();
-	switch (month)
+void Date::showDateAmerican()
 	{
-		case 1: cout << "January ";
-			break;
-		case 2: cout << "February ";
-			break;
-		case 3: cout << "March ";
-			break;
-		case 4: cout << "April ";
-			break;
-		case 5: cout << "May ";
-			break;
-		case 6: cout << "June ";
-			break;
-		case 7: cout << "July ";
-			break;
-		case 8: cout << "August ";
-			break;
-		case 9: cout << "September ";
-			break;
-		case 10: cout << "October ";
-			break;
-		case 11: cout << "November ";
-			break;
-		case 12: cout << "December ";
-			break;
-		default: cout << "Invalid Month ";
+		int month; 
+		cout << endl;
+		month = getMonth();
+		switch (month)
+		{
+			case 1: cout << "January ";
+				break;
+			case 2: cout << "February ";
+				break;
+			case 3: cout << "March ";
+				break;
+			case 4: cout << "April ";
+				break;
+			case 5: cout << "May ";
+				break;
+			case 6: cout << "June ";
+				break;
+			case 7: cout << "July ";
+				break;
+			case 8: cout << "August ";
+				break;
+			case 9: cout << "September ";
+				break;
+			case 10: cout << "October ";
+				break;
+			case 11: cout << "November ";
+				break;
+			case 12: cout << "December ";
+				break;
+			default: cout << "Invalid Month ";
+		}
+		cout << getDay() << ", ";
+		cout << getYear();
 	}
-	cout << getDay() << " ";
-	cout << getYear();
-
 /************************************************************************
 *						void Date::showDateEuropean						*
 *	This will display the date in the Europeanstyle, with the day, then	*
 *   the month written out, then the year.								*
 ************************************************************************/
-void showDateEuropean();
-	int month; 
-	cout << endl;
-	cout << getDay() << " ";
-	month = getMonth();
-	switch (month)
+void Date::showDateEuropean()
 	{
-		case 1: cout << "January ";
-			break;
-		case 2: cout << "February ";
-			break;
-		case 3: cout << "March ";
-			break;
-		case 4: cout << "April ";
-			break;
-		case 5: cout << "May ";
-			break;
-		case 6: cout << "June ";
-			break;
-		case 7: cout << "July ";
-			break;
-		case 8: cout << "August ";
-			break;
-		case 9: cout << "September ";
-			break;
-		case 10: cout << "October ";
-			break;
-		case 11: cout << "November ";
-			break;
-		case 12: cout << "December ";
-			break;
-		default: cout << "Invalid Month ";
+		int month; 
+		cout << endl;
+		cout << getDay() << ". ";
+		month = getMonth();
+		switch (month)
+		{
+			case 1: cout << "January ";
+				break;
+			case 2: cout << "February ";
+				break;
+			case 3: cout << "March ";
+				break;
+			case 4: cout << "April ";
+				break;
+			case 5: cout << "May ";
+				break;
+			case 6: cout << "June ";
+				break;
+			case 7: cout << "July ";
+				break;
+			case 8: cout << "August ";
+				break;
+			case 9: cout << "September ";
+				break;
+			case 10: cout << "October ";
+				break;
+			case 11: cout << "November ";
+				break;
+			case 12: cout << "December ";
+				break;
+			default: cout << "Invalid Month ";
+		}
+		cout << getYear();
+        cout << endl;
 	}
-	cout << getYear();
+
+//***********************main************************
+int main()
+{
+	// declare variables; 
+	int uMonth, uDay, uYear;
+
+	// Get input from user
+	cout << "Please enter the month number: ";
+	cin >> uMonth;
+    cout << endl;
+	cout << "Please enter the day of the month: ";
+	cin >> uDay;
+    cout << endl;
+	cout << "Please enter the year: ";
+	cin >> uYear;
+
+	// Store the user input into the date object
+	Date oneDate(uMonth, uDay, uYear);
+
+	// Call functions to display dates
+	oneDate.showDateSlash(); 
+	oneDate.showDateAmerican();
+	oneDate.showDateEuropean();
+
+	return 0; 
+}
