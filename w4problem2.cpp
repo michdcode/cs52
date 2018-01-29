@@ -28,7 +28,7 @@ class Date
 
 /************************************************************************
 *								Date::Date								*
-*	This overloaded constructor is based upon user input. It will 		*
+*	This constructor is based upon user input. It will 					*
 *	instantiate a Date object if there are three parameters given 		*
 *	at instantiation.													*
 ************************************************************************/

@@ -37,7 +37,7 @@ int recursive(unsigned int n)
 #include <cmath>
 using namespace std;
 
-int power(int, int);
+int powers(int, int);
 int main() {
 	// your code goes here
 	int x = 27;
@@ -45,7 +45,7 @@ int main() {
 	
 	for (int n = 0; n < x; n++)
 		{
-			now = x / power(3, n);
+			now = x / powers(3, n);
 			if (now <= 0)
 				{cout << tally;
 				break;}
@@ -56,7 +56,7 @@ int main() {
 	return 0;
 }
 
-int power(int x, int n)
+int powers(int x, int n)
 {
 	if (n < 0)
 	{
@@ -64,10 +64,8 @@ int power(int x, int n)
 			exit(1);
 	}
 	if (n > 0)
-		return ( power(x, n - 1)*x);
+		return (powers(x, n - 1)*x);
 	else
 		return (1);
 }
-
-
 

@@ -20,16 +20,19 @@ void printEmployees(Employee *, int);
 
 int main()
 {
-	int n, p; // number of employee variables
-	Employee *usersEmployees; // dynamically allocated array
+	// Initialize variables and pointers 
+	int n, p;
+	Employee *usersEmployees;
 	string fn, ln; 
 
-	// Get number of employees
+	// Get number of employees from user
 	cout << "Number of employees: ";
 	cin >> n;
-	usersEmployees = new Employee[n]; // dynamically allocate array 
 
-	// Get the employee information for each employee and add it to the array
+	// dynamically allocate array
+	usersEmployees = new Employee[n];  
+
+	// Get the information for each employee and add it to the array
 	for (int c = 0; c < n; c++)
 	{
 		cin.ignore();
@@ -48,7 +51,7 @@ int main()
 	// Call function that prints elements of array
 	printEmployees(usersEmployees, n);
 
-	// Free dynamically allocated memory
+	// Free memory
 	delete [] usersEmployees;
 }
 
