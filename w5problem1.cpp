@@ -14,13 +14,15 @@ class Item
 		double price;
 	public:
 		Item(); // default constructor
-		Item(string, string, double);
-		void setTitle(string);
-		void setDescription(string);
-		void setprice(double);
-		string getTitle() const;
-		string getDescription() const;
-		double getPrice() const;
+		Item(string, string, double); 
+		// Mutator & Accessor functions -- inline because they are short
+		void setTitle(string iTitle) { title = iTitle; }
+		void setDescription(string iDescription) { description = iDescription; }
+		void setprice(double iPrice) { price = iPrice; }
+		string getTitle() const { return title; }
+		string getDescription() const { return description; }
+		// virtual function for getPrice because it will vary depending upon the type of item
+		virtual double getPrice() const { return " $" + price; }
 };
 
 class Book:public Item 
@@ -28,8 +30,16 @@ class Book:public Item
 	private:
 		int pageCount;
 	public:
-		void setpageCount(int);
-		int getPageCount() const;
+		// Constructor adds pageCount 
+		Book(string uTitle, string uDescription, string uPrice, double uPageCount) : Item(uTitle, uDescription, uPrice)
+		{ 
+			pageCount = uPageCount; 
+		}
+		// Mutator & Accessor functions -- inline because they are short
+		void setpageCount(int iPageCount) { pageCount = iPageCount; }
+		int getPageCount() const { return pageCount; }
+		// Override getPrice to include Page Count
+		virtual double getPrice () const { return "Page count: " pageCount + " " + Item::getPrice();  }// may need to change to getPageCount
 };
 
 class Movie:public Item 
@@ -37,24 +47,43 @@ class Movie:public Item
 	private:
 		double length;
 	public:
-		void setlength(double);
-		double getlength() const;
+		// Constructor adds length 
+		Movie(string uTitle, string uDescription, string uPrice, double uLength) : Item(uTitle, uDescription, uPrice)
+		{ 
+			length = uLength; 
+		}
+		// Mutator & Accessor functions -- inline because they are short
+		void setlength(double iLength) { length = iLength; }
+		double getlength() const { return length; } 
+		// Override getPrice to include Length
+		virtual double getPrice () const { return "Length: " length + " " + Item::getPrice();  } 
 };
 
 class CD:public Item
 {
 	private:
-		int trackCount;
+		double trackCount;
 	public:
-		void settrackCount(int);
-		int getTrackCount() const;
+		// Constructor adds trackCount 
+		CD(string uTitle, string uDescription, string uPrice, double uTrackCount) : Item(uTitle, uDescription, uPrice)
+		{ 
+			trackCount = uTrackCount; 
+		}
+		// Mutator & Accessor functions -- inline because they are short
+		void setTrackCount(int iTrackCount) { trackCount = iTrackCount; }
+		int getTrackCount() const { return trackCount; }
+		// Override getPrice to include track count
+		virtual double getPrice () const { return "Track Count: " trackCount + " " + Item::getPrice();  }
 };
 
 class ShoppingCart
 {
 	private:
-		Item cart[5];
+		const int NUM_ITEMS = 5;
+		Item *cart[NUM_ITEMS];
 	public:
+		ShoppingCart(); // default constructor
+		// ShoppingCart(Item); probably don't need this 
 		void addItemToCart(Item);
 		Item getCart() const; //? getting an array of objects
 };
@@ -74,3 +103,41 @@ class Customer
 		string getFirstName() const;
 		string getLastName() const;
 };
+
+/************************************************************************
+*								Item::Item								*
+*	This constructor is based upon user input. It will 	instantiate		*
+*	an Item object.														*
+************************************************************************/
+Item::Item(string userTitle, string userDescription, int userPrice) 
+	{
+		setTitle(userTitle);
+		setDescription(userDescription);
+		setPrice(userYear);
+	}
+/************************************************************************
+*						ShoppingCart::ShoppingCart						*
+*	This constructor is based upon user input. It will 	instantiate		*
+*	a Shopping Cart object.												*
+************************************************************************/
+void ShoppingCart::addItemToCart(Item iCart) // this has to be a virtual function
+	{	
+		cart = iCart; 
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
