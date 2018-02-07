@@ -13,16 +13,20 @@ class Item
 		string title, description;
 		double price;
 	public:
-		Item(); // default constructor
-		Item(string, string, double); 
+		Item(string userTitle, string userDescription, double userPrice) 
+		{
+			setTitle(userTitle);
+			setDescription(userDescription);
+			setPrice(userPrice);
+		}
 		// Mutator & Accessor functions -- inline because they are short
-		void setTitle(string iTitle) { title = iTitle; }
-		void setDescription(string iDescription) { description = iDescription; }
-		void setprice(double iPrice) { price = iPrice; }
-		string getTitle() const { return title; }
-		string getDescription() const { return description; }
+		void setTitle(string userTitle) { title = userTitle; }
+		void setDescription(string userDescription) { description = userDescription; }
+		void setPrice(double userPrice) { price = userPrice; }
+		string getTitle() { return title; }
+		string getDescription() { return description; }
 		// virtual function for getPrice because it will vary depending upon the type of item
-		virtual double getPrice() const { return " $" + price; }
+		virtual double getPrice() { cout << " $" << price; }
 };
 
 class Book:public Item 
@@ -31,7 +35,8 @@ class Book:public Item
 		int pageCount;
 	public:
 		// Constructor adds pageCount 
-		Book(string uTitle, string uDescription, string uPrice, double uPageCount) : Item(uTitle, uDescription, uPrice)
+		Book(string uTitle, string uDescription, double uPrice, double uPageCount) 
+		: Item(uTitle, uDescription, uPrice)
 		{ 
 			pageCount = uPageCount; 
 		}
@@ -109,12 +114,7 @@ class Customer
 *	This constructor is based upon user input. It will 	instantiate		*
 *	an Item object.														*
 ************************************************************************/
-Item::Item(string userTitle, string userDescription, int userPrice) 
-	{
-		setTitle(userTitle);
-		setDescription(userDescription);
-		setPrice(userYear);
-	}
+
 /************************************************************************
 *						ShoppingCart::ShoppingCart						*
 *	This constructor is based upon user input. It will 	instantiate		*
