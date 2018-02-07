@@ -13,7 +13,8 @@ class Item
 		string title, description;
 		double price;
 	public:
-		// Mutator & Accessor function prototypes
+		Item(); // default constructor
+		Item(string, string, double);
 		void setTitle(string);
 		void setDescription(string);
 		void setprice(double);
@@ -22,7 +23,7 @@ class Item
 		double getPrice() const;
 };
 
-class Book : public Item 
+class Book:public Item 
 {
 	private:
 		int pageCount;
@@ -31,7 +32,7 @@ class Book : public Item
 		int getPageCount() const;
 };
 
-class Movie : public Item 
+class Movie:public Item 
 {
 	private:
 		double length;
@@ -40,7 +41,7 @@ class Movie : public Item
 		double getlength() const;
 };
 
-class CD : public Item
+class CD:public Item
 {
 	private:
 		int trackCount;
@@ -52,8 +53,7 @@ class CD : public Item
 class ShoppingCart
 {
 	private:
-		int const size = 5;
-		Item cart([SIZE]); // ? ptr to an array instead
+		Item cart[5];
 	public:
 		void addItemToCart(Item);
 		Item getCart() const; //? getting an array of objects
@@ -64,8 +64,13 @@ class Customer
 	private:
 		int ID;
 		string firstName, lastName;
-		ShoppingCart *customerCart // ptr to a ShoppingCart object
+		ShoppingCart *customerCart; // ptr to a ShoppingCart object
 	public:
-
-
+		void setID(int);
+		void setFirstName(string);
+		void setLastName(string);
+		void setShoppingCart(ShoppingCart*);
+		int getID() const;
+		string getFirstName() const;
+		string getLastName() const;
 };
