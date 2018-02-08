@@ -43,7 +43,7 @@ class Book:public Item
 		}
 		// Mutator & Accessor functions -- inline because they are short
 		void setpageCount(double iPageCount) { pageCount = iPageCount; }
-		double getPageCount() const { return pageCount; }
+		double getPageCount() { return pageCount; }
 		// Override getPrice to include Page Count
 		virtual double getPrice () { cout << "Page count: " << pageCount << " " << Item::getPrice();  }// may need to change to getPageCount
 };
@@ -61,7 +61,7 @@ class Movie:public Item
 		}
 		// Mutator & Accessor functions -- inline because they are short
 		void setlength(double iLength) { length = iLength; }
-		double getlength() const { return length; } 
+		double getlength() { return length; } 
 		// Override getPrice to include Length
 		virtual double getPrice () { cout << "Length: " << length << " " << Item::getPrice();  } 
 };
@@ -79,7 +79,7 @@ class CD:public Item
 		}
 		// Mutator & Accessor functions -- inline because they are short
 		void setTrackCount(double iTrackCount) { trackCount = iTrackCount; }
-		double getTrackCount() const { return trackCount; }
+		double getTrackCount() { return trackCount; }
 		// Override getPrice to include track count
 		virtual double getPrice () { cout << "Track Count: " << trackCount <<  " " << Item::getPrice();  }
 };
@@ -94,29 +94,37 @@ class ShoppingCart
 			cart.push_back(tempItem);
 		}
 		void addItemToCart(string, string, double, double, int, int);
-		Item getCart() const; //? getting an array of objects
+		void printCart(vector<Item>); 
 };
 
-// class Customer
-// {
-// 	private:
-// 		int ID;
-// 		string firstName, lastName;
-// 		ShoppingCart *customerCart; // ptr to a ShoppingCart object
-// 	public:
-// 		void setID(int);
-// 		void setFirstName(string);
-// 		void setLastName(string);
-// 		void setShoppingCart(ShoppingCart*);
-// 		int getID() const;
-// 		string getFirstName() const;
-// 		string getLastName() const;
-// };
+class Customer
+{
+	private:
+		int ID;
+		string firstName, lastName;
+		ShoppingCart customerCart; 
+	public:
+		Customer(int uID, string uFirstName, string uLastName, ShoppingCart *basket)
+		{
+			setID(uID);
+			setFirstName(uFirstName);
+			setLastName(uLastName);
+			setShoppingCart(ShoppingCart *basket);
+		}
+		// Mutator & Accessor functions -- inline because they are short
+		void setID(int uID) { ID = uID; }
+		void setFirstName(string uFirstName) { firstName = uFirstName; }
+		void setLastName(string uLastName) { lastName = uLastName; }
+		void setShoppingCart(ShoppingCart *basket) { customerCart = *basket; } // ptr to a ShoppingCart object
+		int getID() {return ID; }
+		string getFirstName() {return firstName; }
+		string getLastName() {return lastName; }
+		ShoppingCart *getShoppingCart() { return customerCart; }
+};
 
 /************************************************************************
-*						ShoppingCart::ShoppingCart						*
-*	This constructor is based upon user input. It will 	instantiate		*
-*	a Shopping Cart object.												*
+*						ShoppingCart::addItemToCart						*
+*	This adds an item object to the shopping cart vector.				*
 ************************************************************************/
 void ShoppingCart::addItemToCart(string mTitle, string mDescription, double mPrice, double mInfo, int type, int num) 
 	{	
@@ -136,12 +144,26 @@ void ShoppingCart::addItemToCart(string mTitle, string mDescription, double mPri
 			ShoppingCart tempItem(tempCD); 
 		}
 	}
-
-
-
-
-
-
+/************************************************************************
+*						ShoppingCart::printCart							*
+*	Display all items in Shopping cart.									*
+************************************************************************/
+void printCart(vector<Item> cart)
+	{
+		for (int num = 0; num < cart.size(); num ++)
+		{
+			cout << "Item number: " << (num + 1) << endl;
+			cout << cart[num].getTitle();
+			cout << endl; 
+			cout << cart[num].getDescription();
+			cout << endl;
+			cout << cart[num].getPrice();
+		}
+	}
+/************************************************************************
+*						Customer::printCart							*
+*	Display all items in Shopping cart.									*
+************************************************************************/
 
 
 
