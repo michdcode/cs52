@@ -12,22 +12,21 @@ class Item
 {
 	private:
 		string title, description;
-		double price;
+		double price; 
 	public:
-		Item(string userTitle, string userDescription, double userPrice) 
+		Item(string uTitle, string uDescription, double uPrice) 
 		{
-			setTitle(userTitle);
-			setDescription(userDescription);
-			setPrice(userPrice);
+			setTitle(uTitle);
+			setDescription(uDescription);
+			setPrice(uPrice);
 		}
 		// Mutator & Accessor functions -- inline because they are short
-		void setTitle(string userTitle) { title = userTitle; }
-		void setDescription(string userDescription) { description = userDescription; }
-		void setPrice(double userPrice) { price = userPrice; }
+		void setTitle(string uTitle) { title = uTitle; }
+		void setDescription(string uDescription) { description = uDescription; }
+		void setPrice(double uPrice) { price = uPrice; }
 		string getTitle() { return title; }
 		string getDescription() { return description; }
-		// virtual function for getPrice because it will vary depending upon the type of item
-		virtual double getPrice() { cout << " $" << price; }
+		double getPrice() { return price; }
 };
 
 class Book:public Item 
@@ -44,8 +43,6 @@ class Book:public Item
 		// Mutator & Accessor functions -- inline because they are short
 		void setpageCount(double iPageCount) { pageCount = iPageCount; }
 		double getPageCount() { return pageCount; }
-		// Override getPrice to include Page Count
-		virtual double getPrice () { cout << "Page count: " << pageCount << " " << Item::getPrice();  }// may need to change to getPageCount
 };
 
 class Movie:public Item 
@@ -62,8 +59,6 @@ class Movie:public Item
 		// Mutator & Accessor functions -- inline because they are short
 		void setlength(double iLength) { length = iLength; }
 		double getlength() { return length; } 
-		// Override getPrice to include Length
-		virtual double getPrice () { cout << "Length: " << length << " " << Item::getPrice();  } 
 };
 
 class CD:public Item
@@ -80,8 +75,6 @@ class CD:public Item
 		// Mutator & Accessor functions -- inline because they are short
 		void setTrackCount(double iTrackCount) { trackCount = iTrackCount; }
 		double getTrackCount() { return trackCount; }
-		// Override getPrice to include track count
-		virtual double getPrice () { cout << "Track Count: " << trackCount <<  " " << Item::getPrice();  }
 };
 
 class ShoppingCart
@@ -89,12 +82,14 @@ class ShoppingCart
 	private:
 		vector<Item> cart;
 	public:
-		ShoppingCart(Item tempItem)
+		ShoppingCart(Item item1, Item item2, Item item3)
 		{
-			cart.push_back(tempItem);
+			addItemToCart(item1);
+            addItemToCart(item2);
+            addItemToCart(item3);
 		}
-		void addItemToCart(string, string, double, double, int, int);
-		void printCart(vector<Item>); 
+		void addItemToCart(Item tempItem) { cart.push_back(tempItem); }
+		vector<Item> getCart(); 
 };
 
 class Customer
@@ -104,7 +99,7 @@ class Customer
 		string firstName, lastName;
 		ShoppingCart *customerCart; // ptr to a ShoppingCart object
 	public:
-		Customer(int uID, string uFirstName, string uLastName, ShoppingCart *basket)
+		Customer(int uID, string uFirstName, string uLastName)
 		{
 			setID(uID);
 			setFirstName(uFirstName);
@@ -114,44 +109,22 @@ class Customer
 		void setID(int uID) { ID = uID; }
 		void setFirstName(string uFirstName) { firstName = uFirstName; }
 		void setLastName(string uLastName) { lastName = uLastName; }
-		void setShoppingCart(ShoppingCart *basket) { *customerCart = *basket; } 
+		// void setShoppingCart(ShoppingCart *basket) { *customerCart = *basket; } 
 		int getID() {return ID; }
 		string getFirstName() {return firstName; }
 		string getLastName() {return lastName; }
-		// ShoppingCart getShoppingCart() { return *customerCart; }
 };
-
 /************************************************************************
-*						ShoppingCart::addItemToCart						*
-*	This adds an item object to the shopping cart vector.				*
-************************************************************************/
-void ShoppingCart::addItemToCart(string mTitle, string mDescription, double mPrice, double mInfo, int type, int num) 
-	{	
-		if (type == 1) 
-		{
-			Book tempBook(mTitle, mDescription, mPrice, mInfo);
-			ShoppingCart tempItem(tempBook);
-		} 
-		else if (type == 2)
-		{
-			Movie tempMovie(mTitle, mDescription, mPrice, mInfo);
-			ShoppingCart tempItem(tempMovie);
-		}
-		else
-		{
-			CD tempCD(mTitle, mDescription, mPrice, mInfo);
-			ShoppingCart tempItem(tempCD); 
-		}
-	}
-/************************************************************************
-*						ShoppingCart::printCart							*
+*						ShoppingCart::getCart							*
 *	Display all items in Shopping cart.									*
 ************************************************************************/
-void printCart(vector<Item> cart)
+vector<Item> ShoppingCart::getCart()
 	{
 		for (int num = 0; num < cart.size(); num ++)
 		{
-			cout << "Item number: " << (num + 1) << endl;
+			
+            cout << endl; 
+            cout << "Item number: " << (num + 1) << endl;
 			cout << cart[num].getTitle();
 			cout << endl; 
 			cout << cart[num].getDescription();
@@ -159,13 +132,25 @@ void printCart(vector<Item> cart)
 			cout << cart[num].getPrice();
 		}
 	}
-/************************************************************************
-*						Customer::printCart							*
-*	Display all items in Shopping cart.									*
-************************************************************************/
 
+int main()
+{
+	// Initialize variables
+	string aFirstName, aLastName, aTitle, aDescription;
+	int aID, atype;
+	double aPrice, aPageCount, aLength, aTrackCount;
 
-
+	// Create a customer
+	Customer jane(101, "Jane", "Doe");
+	
+	// Create one item of each type & add to customer's shopping cart
+	Book janesBook("Astrophysics for People in a Hurry", "Nonfiction", 11.37, 224.0);
+	Movie janesMovie("Guardians of the Galaxy2", "Action", 12.19, 2.15);
+	CD janesCD("Evolve", "Imagine Dragons", 9.99, 11.0);	
+	ShoppingCart janesItems(janesBook, janesMovie, janesCD); 
+	janesItems.getCart();
+	return 0;
+}
 
 
 
