@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 // classes
@@ -32,7 +33,7 @@ class Item
 class Book:public Item 
 {
 	private:
-		int pageCount;
+		double pageCount;
 	public:
 		// Constructor adds pageCount 
 		Book(string uTitle, string uDescription, double uPrice, double uPageCount) 
@@ -41,10 +42,10 @@ class Book:public Item
 			pageCount = uPageCount; 
 		}
 		// Mutator & Accessor functions -- inline because they are short
-		void setpageCount(int iPageCount) { pageCount = iPageCount; }
-		int getPageCount() const { return pageCount; }
+		void setpageCount(double iPageCount) { pageCount = iPageCount; }
+		double getPageCount() const { return pageCount; }
 		// Override getPrice to include Page Count
-		virtual double getPrice () const { return "Page count: " pageCount + " " + Item::getPrice();  }// may need to change to getPageCount
+		virtual double getPrice () { cout << "Page count: " << pageCount << " " << Item::getPrice();  }// may need to change to getPageCount
 };
 
 class Movie:public Item 
@@ -53,7 +54,8 @@ class Movie:public Item
 		double length;
 	public:
 		// Constructor adds length 
-		Movie(string uTitle, string uDescription, string uPrice, double uLength) : Item(uTitle, uDescription, uPrice)
+		Movie(string uTitle, string uDescription, double uPrice, double uLength) 
+		: Item(uTitle, uDescription, uPrice)
 		{ 
 			length = uLength; 
 		}
@@ -61,7 +63,7 @@ class Movie:public Item
 		void setlength(double iLength) { length = iLength; }
 		double getlength() const { return length; } 
 		// Override getPrice to include Length
-		virtual double getPrice () const { return "Length: " length + " " + Item::getPrice();  } 
+		virtual double getPrice () { cout << "Length: " << length << " " << Item::getPrice();  } 
 };
 
 class CD:public Item
@@ -70,59 +72,69 @@ class CD:public Item
 		double trackCount;
 	public:
 		// Constructor adds trackCount 
-		CD(string uTitle, string uDescription, string uPrice, double uTrackCount) : Item(uTitle, uDescription, uPrice)
+		CD(string uTitle, string uDescription, double uPrice, double uTrackCount) 
+		: Item(uTitle, uDescription, uPrice)
 		{ 
 			trackCount = uTrackCount; 
 		}
 		// Mutator & Accessor functions -- inline because they are short
-		void setTrackCount(int iTrackCount) { trackCount = iTrackCount; }
-		int getTrackCount() const { return trackCount; }
+		void setTrackCount(double iTrackCount) { trackCount = iTrackCount; }
+		double getTrackCount() const { return trackCount; }
 		// Override getPrice to include track count
-		virtual double getPrice () const { return "Track Count: " trackCount + " " + Item::getPrice();  }
+		virtual double getPrice () { cout << "Track Count: " << trackCount <<  " " << Item::getPrice();  }
 };
 
 class ShoppingCart
 {
 	private:
-		const int NUM_ITEMS = 5;
-		Item *cart[NUM_ITEMS];
+		vector<Item> cart;
 	public:
-		ShoppingCart(); // default constructor
-		// ShoppingCart(Item); probably don't need this 
-		void addItemToCart(Item);
+		ShoppingCart(Item tempItem)
+		{
+			cart.push_back(tempItem);
+		}
+		void addItemToCart(string, string, double, double, int, int);
 		Item getCart() const; //? getting an array of objects
 };
 
-class Customer
-{
-	private:
-		int ID;
-		string firstName, lastName;
-		ShoppingCart *customerCart; // ptr to a ShoppingCart object
-	public:
-		void setID(int);
-		void setFirstName(string);
-		void setLastName(string);
-		void setShoppingCart(ShoppingCart*);
-		int getID() const;
-		string getFirstName() const;
-		string getLastName() const;
-};
-
-/************************************************************************
-*								Item::Item								*
-*	This constructor is based upon user input. It will 	instantiate		*
-*	an Item object.														*
-************************************************************************/
+// class Customer
+// {
+// 	private:
+// 		int ID;
+// 		string firstName, lastName;
+// 		ShoppingCart *customerCart; // ptr to a ShoppingCart object
+// 	public:
+// 		void setID(int);
+// 		void setFirstName(string);
+// 		void setLastName(string);
+// 		void setShoppingCart(ShoppingCart*);
+// 		int getID() const;
+// 		string getFirstName() const;
+// 		string getLastName() const;
+// };
 
 /************************************************************************
 *						ShoppingCart::ShoppingCart						*
 *	This constructor is based upon user input. It will 	instantiate		*
 *	a Shopping Cart object.												*
 ************************************************************************/
-void ShoppingCart::addItemToCart(Item iCart) // this has to be a virtual function
+void ShoppingCart::addItemToCart(string mTitle, string mDescription, double mPrice, double mInfo, int type, int num) 
 	{	
-		cart = iCart; 
+		if (type == 1) 
+		{
+			Book tempBook(mTitle, mDescription, mPrice, mInfo);
+			ShoppingCart tempItem(tempBook);
+		} 
+		else if (type == 2)
+		{
+			Movie tempMovie(mTitle, mDescription, mPrice, mInfo);
+			ShoppingCart tempItem(tempMovie);
+		}
+		else
+		{
+			CD tempCD(mTitle, mDescription, mPrice, mInfo);
+			ShoppingCart tempItem(tempCD); 
+		}
 	}
 
 
