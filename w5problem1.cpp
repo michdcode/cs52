@@ -102,24 +102,23 @@ class Customer
 	private:
 		int ID;
 		string firstName, lastName;
-		ShoppingCart customerCart; 
+		ShoppingCart *customerCart; // ptr to a ShoppingCart object
 	public:
 		Customer(int uID, string uFirstName, string uLastName, ShoppingCart *basket)
 		{
 			setID(uID);
 			setFirstName(uFirstName);
 			setLastName(uLastName);
-			setShoppingCart(ShoppingCart *basket);
 		}
 		// Mutator & Accessor functions -- inline because they are short
 		void setID(int uID) { ID = uID; }
 		void setFirstName(string uFirstName) { firstName = uFirstName; }
 		void setLastName(string uLastName) { lastName = uLastName; }
-		void setShoppingCart(ShoppingCart *basket) { customerCart = *basket; } // ptr to a ShoppingCart object
+		void setShoppingCart(ShoppingCart *basket) { *customerCart = *basket; } 
 		int getID() {return ID; }
 		string getFirstName() {return firstName; }
 		string getLastName() {return lastName; }
-		ShoppingCart *getShoppingCart() { return customerCart; }
+		// ShoppingCart getShoppingCart() { return *customerCart; }
 };
 
 /************************************************************************
